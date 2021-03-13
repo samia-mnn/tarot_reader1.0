@@ -116,6 +116,7 @@
             function proceed()
             {
                 bringdown1.start(card1.set);
+                bringup2.start(card2.set);
             }
 
             const container = popmotion.styler(document.querySelector('.container'));
@@ -182,6 +183,19 @@
                
             })
 
+            const tabledown = popmotion.tween({ 
+                 from: { 
+                    y: -300
+                 },
+                 to: { 
+                    scale: 1,
+                    opacity:1,
+                    y: 100
+                 },
+                duration: 2000
+               
+            })
+
             const bringup1 = popmotion.tween({ 
                  from: { 
                     x: 0,
@@ -202,6 +216,19 @@
                  },
                  to: { 
                     scale: 1,
+                    x: 0
+                 },
+                duration: 2000
+               
+            })
+
+            const bringup2 = popmotion.tween({ 
+                 from: { 
+                    x: 0,
+                    scale: 1
+                 },
+                 to: { 
+                    scale: 2,
                     x: 0
                  },
                 duration: 2000
