@@ -98,7 +98,7 @@
                          //For present: "Your current mantra seems to be : affirmation. Keep your current habit of : light. However, don't continue: shadow"
                         //For future: "Ask yourself: question. Fortune Telling. In the future you will be : light"
                         pasttitle= "Your past has been defined by the card "+ data[cool[0]].name;
-                        document.getElementById("readtitle") = pasttitle;
+                        document.getElementById("readtitle").innerHTML = pasttitle;
                         pastwords = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
                         document.getElementById("knowledge").innerHTML = pastwords;
                         tableup.start(words.set);
