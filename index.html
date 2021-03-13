@@ -112,19 +112,25 @@
                         futwords =  data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
                              //your past ... has lead you to ...light in the present. Use the ...key word  
                              //Summary ... key word in your past has lead you to key word in your present. Use this to face shadow future. Remember, 
-                        summary = "It seems as though " + data[cool[0]].keywords[0] + " has lead you to " + data[cool[1]].keywords[1] +" in the present. Use this to face " +  (data[cool[2]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() + " in your future. Remember, " +  data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ".";
+                        summary = "It seems as though " + data[cool[0]].keywords[0] + " has lead you to " + data[cool[1]].keywords[1] +" in the present. Use this to face " +  (data[cool[2]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() + " in your future. Remember, " +  data[cool[2]].fortune_telling[Math.floor(Math.random()*2)].toLowerCase() + ".";
                         });
  
             }
             
             function proceed()
             {
+                if (state == 3)
+                {
+                    location.reload();
+                }
                 if (state == 2)
                 { 
                     tabledown.start(table.set);
                     tableupup.start(words.set);
                     document.getElementById("readtitle").innerHTML = "Summary";
                     document.getElementById("knowledge").innerHTML = summary;
+                    document.getElementById("proceed").innerHTML = "Do another reading";
+                    state == 3;
 
 
                 }
@@ -226,12 +232,13 @@
 
             const tabledown = popmotion.tween({ 
                  from: { 
-                    y: -300
+                    y: -300,
+                    scale: 1
                  },
                  to: { 
-                    scale: 1,
+                    scale: 0.8,
                     opacity:1,
-                    y: 100
+                    y: 200
                  },
                 duration: 2000
                
