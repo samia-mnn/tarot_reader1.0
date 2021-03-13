@@ -44,7 +44,7 @@
             var form = document.getElementById("myForm");
             function handleForm(event) { event.preventDefault(); } 
             form.addEventListener('submit', handleForm);
-          
+            var state = 0;
          
 
             function getReading()
@@ -104,7 +104,7 @@
                         document.getElementById("proceed").innerHTML = "Continue?";
                         tableup.start(words.set);
                         prestitle = "Your present has been defined by the card " + data[cool[1]].name;
-                        preswords = "You are currently represented as " + data[cool[1]].Archetype +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        preswords = "You believe in " + data[cool[1]].keywords[0] +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
                         futtitle = "Your future is told by the card " + data[cool[2]].name;
                         futwords = "In the future, you will see " + data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
 
@@ -112,13 +112,22 @@
                         });
  
             }
-
+            
             function proceed()
             {
-                
-                bringup1.start(card2.set);
-                document.getElementById("readtitle").innerHTML = prestitle;
-                document.getElementById("knowledge").innerHTML = preswords;
+                if (state == 1)
+                {
+                    bringup1.start(card3.set);
+                    document.getElementById("readtitle").innerHTML = futtitle;
+                    document.getElementById("knowledge").innerHTML = futwords;
+                }
+                if (state == 0)
+                {
+                    bringup1.start(card2.set);
+                    document.getElementById("readtitle").innerHTML = prestitle;
+                    document.getElementById("knowledge").innerHTML = preswords;
+                    state = 1;
+                }
             }
 
             const container = popmotion.styler(document.querySelector('.container'));
