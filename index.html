@@ -121,7 +121,7 @@
             {
                 if (state == 3)
                 {
-                    history.go(0);
+                    window.location.reload(true);
                 }
                 if (state == 2)
                 { 
@@ -130,7 +130,7 @@
                     document.getElementById("readtitle").innerHTML = "Summary";
                     document.getElementById("knowledge").innerHTML = summary;
                     document.getElementById("proceed").innerHTML = "Do another reading";
-                    state == 3;
+                    state = 3;
 
 
                 }
