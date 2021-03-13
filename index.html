@@ -37,7 +37,7 @@
             <button type="button" id = "proceed" onclick="proceed()"></button>
         </div>
 
-        <span class="dot" class = "sun"></span>
+        <span class="dot" ></span>
 
         <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
         <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -138,7 +138,7 @@
             const card2=popmotion.styler(document.getElementById("card2"));
             const card3=popmotion.styler(document.getElementById("card3"));
             const words = popmotion.styler(document.querySelector('.commentary'));
-            const sunny =  popmotion.styler(document.querySelector('.sun'));
+            const sunny =  popmotion.styler(document.querySelector('.dot'));
             const formElements = document.querySelector('.inner');
             const msgPop = popmotion.styler(document.querySelector('.msg'));
             const rotation = popmotion.tween({
