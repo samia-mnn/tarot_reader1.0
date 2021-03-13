@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width-device-width, intial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content="ie-edge">
+        <title> Alright </title>
+        <link rel="stylesheet" href = "css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1> Would you like a tarot reading? </h1>
+            
+            <form id="myForm">
+                <span class="msg">Full name please!</span>
+                <input type="submit" value="Yes, please." class="btn" onclick="doRead()">
+            </form>
+        </div>
+
+     
+
+        <div class="cards">
+            <div class = "card" id = "card1">
+                <img src = "cardback.JPG"  id = "card1img" style="max-height: 200px; max-width: 120px;">
+            </div>
+            <div class = "card" id = "card2">
+                <img src = "cardback.JPG" id = "card2img" style="max-height: 200px; max-width: 120px;">
+            </div>
+            <div class = "card" id = "card3">
+                <img src = "cardback.JPG" id = "card3img" style="max-height: 200px; max-width: 120px;">
+            </div>
+        </div>
+
+        <div class = "commentary">
+            <h1 id = "readtitle"></h1>
+            <p id = "knowledge"></p>
+        </div>
+
+        <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script>
+            
+            var form = document.getElementById("myForm");
+            function handleForm(event) { event.preventDefault(); } 
+            form.addEventListener('submit', handleForm);
+          
+         
+
+            function getReading()
+            {
+                const NUM_CARDS = 78;
+                var cardOne = 0;
+                var cardTwo = 0;
+                var cardThree = 0;
+                     cardOne = Math.floor(Math.random() *(78));
+                     cardTwo = Math.floor(Math.random() *(78));
+                     cardThree = Math.floor(Math.random() *(78));
+                while (cardOne == cardTwo || cardTwo == cardThree || cardOne == cardThree)
+                {
+                    cardOne = Math.floor(Math.random() *(78));
+                    cardTwo = Math.floor(Math.random() *(78));
+                    cardThree = Math.floor(Math.random() *(78));
+                }
+           
+                const readers = [cardOne, cardTwo, cardThree]; 
+                console.log(readers);
+                return readers;
+
+            }
+
+            function doRead()
+            {
+                console.log("Make the cards appear and all");
+                fadeout.start(container.set);
+                     const cards =  d3.json("tarot.json").then(function(data)
+                    {
+                         console.log(data);
+                         var cool = getReading();
+                         console.log(data[cool[1]]);
+                         var img1 = document.getElementById("card1img");
+                         var img2 = document.getElementById("card2img");
+                         var img3 = document.getElementById("card3img");
+                         img1.src = "cards/"+data[cool[0]].img;
+                         img2.src = "cards/"+data[cool[1]].img;
+                         img3.src = "cards/"+data[cool[2]].img;
+                         tableup.start(
+                             {update: table.set,
+                              complete: () =>  {bringEmUp()}
+                             });
+                            
+                        document.getElementById("readtitle").innerHTML = "Your past has been defined by the card "+ data[cool[0]].name;
+                        document.getElementById("knowledge").innerHTML = "You may have been "+ data[cool[0]].meanings.light[Math.floor(Math.random()*8)].toLowerCase() +". In some moments, you have been " + data[cool[0]].meanings.shadow[Math.floor(Math.random()*8)].toLowerCase() +".";
+                        tableup.start(words.set);
+                         //For present: "Your current mantra seems to be : affirmation. Keep your current habit of : light. However, don't continue: shadow"
+                        //For future: "Ask yourself: question. Fortune Telling. In the future you will be : light"
+                    
+                        });
+ 
+            }
+
+            const container = popmotion.styler(document.querySelector('.container'));
+            const table = popmotion.styler(document.querySelector('.cards'));
+            const card1=popmotion.styler(document.getElementById("card1"));
+            const card2=popmotion.styler(document.getElementById("card2"));
+            const card3=popmotion.styler(document.getElementById("card3"));
+            const words = popmotion.styler(document.querySelector('.commentary'));
+            const formElements = document.querySelector('.inner');
+            const msgPop = popmotion.styler(document.querySelector('.msg'));
+            
+            const beginani = popmotion.tween({ 
+                 from: { 
+                    scale: .3,
+                    opacity: 0
+                 },
+                 to: { 
+                    scale: 1,
+                    opacity:1
+                 },
+                duration: 2000
+               
+            })
+
+             
+            const setzero = popmotion.tween({ 
+                 from: { 
+                    scale: 0,
+                    opacity: 0
+                 },
+                 to: { 
+                    scale: 0,
+                    opacity:0
+                 },
+                duration: 2000
+               
+            })
+
+            const cardslide = popmotion.tween({ 
+                 from: { 
+                    scale: .3,
+                    opacity: 1,
+                    y: 500
+                 },
+                 to: { 
+                    scale: 1,
+                    opacity:1,
+                    y:0
+                 },
+                duration: 2000
+               
+            })
+
+            const tableup = popmotion.tween({ 
+                 from: { 
+                    y: 0
+                 },
+                 to: { 
+                    scale: 1,
+                    opacity:1,
+                    y:-300
+                 },
+                duration: 2000
+               
+            })
+
+            const bringup1 = popmotion.tween({ 
+                 from: { 
+                    x: 0,
+                    scale: 1
+                 },
+                 to: { 
+                    scale: 2,
+                    x: 50
+                 },
+                duration: 2000
+               
+            })
+
+            function bringEmUp ()
+            {
+                bringup1.start(card1.set);
+            }
+           
+           
+            
+            setzero.start(card1)
+            setzero.start(card2)
+            setzero.start(card3)
+          
+            beginani.start(
+            {
+               update: container.set,
+               
+            }
+            );
+            {cardslide.start(card1.set), cardslide.start(card2.set),cardslide.start(card3.set)}
+           
+
+            const fadeout = popmotion.tween({ 
+                 from: { 
+                    scale: 1,
+                    opacity: 1
+                 },
+                 to: { 
+                    scale: 0.5,
+                    opacity:0
+                 },
+                duration: 2000
+            })
+            
+            
+           
+
+
+            
+
+
+        </script>
+    </body>
+</html>
