@@ -28,6 +28,15 @@ h1 {margin:0;}
     display: absolute;
   }
 
+  .probut {
+    height: 80px;
+    width: 80px;
+    color: white;
+    background-color: rgb(69, 41, 77);
+    border-radius: 50%;
+    text-align: center;
+  }
+
 .commentary {
     width: calc(100% - 2em);
     padding:0;
