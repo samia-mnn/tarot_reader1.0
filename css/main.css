@@ -33,7 +33,8 @@ h1 {margin:0;}
     width: 80px;
     color: white;
     background-color: rgb(69, 41, 77);
-    border-radius: 50%;
+    border-radius: 20%;
+    font: Trebuchet;
     text-align: center;
   }
 
