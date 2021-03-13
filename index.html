@@ -117,11 +117,18 @@
             
             function proceed()
             {
+                if (state == 2)
+                {
+                    document.getElementById("proceed").innerHTML = "Get a different reading?";
+                    doRead();
+                }
+                
                 if (state == 1)
                 {
                     bringup1.start(card3.set);
                     document.getElementById("readtitle").innerHTML = futtitle;
                     document.getElementById("knowledge").innerHTML = futwords;
+                    state = 2;
                 }
                 if (state == 0)
                 {
