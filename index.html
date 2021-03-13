@@ -34,7 +34,7 @@
         <div class = "commentary">
             <h1 id = "readtitle"></h1>
             <p id = "knowledge"></p>
-           
+            <button id = "gopresentbut" onclick="goPresent()"></button>
         </div>
 
         <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
@@ -98,7 +98,7 @@
                         document.getElementById("readtitle") = pasttitle;
                         pastwords = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
                         document.getElementById("knowledge").innerHTML = pastwords;
-                        
+                        document.getElementById("gopresentbut").innerHTML = "See your present.";
                         tableup.start(words.set);
                         prestitle = "Your present has been defined by the card " + data[cool[1]].name;
                         preswords = "You are currently represented as " + data[cool[1]].Archetype +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
@@ -227,7 +227,12 @@
             {
                 bringup1.start(card1.set);
             }
-        
+           
+            function goPresent(){
+                bringdown1.start(card1.set);
+                bringup2.start(card2.set);
+
+            }
            
             
             setzero.start(card1)
