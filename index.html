@@ -12,7 +12,7 @@
             <h1> Would you like a tarot reading? </h1>
             
             <form id="myForm">
-                <span class="msg">Full name please!</span>
+                
                 <input type="submit" value="Yes, please." class="btn" onclick="doRead()">
             </form>
         </div>
@@ -34,6 +34,7 @@
         <div class = "commentary">
             <h1 id = "readtitle"></h1>
             <p id = "knowledge"></p>
+            <button id = "gopresentbut" onclick="goPresent()"></button>
         </div>
 
         <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
@@ -67,7 +68,12 @@
                 return readers;
 
             }
-
+            var pasttitle= "";
+            var pastwords= "";
+            var prestitle="";
+            var preswords="";
+            var futtitle="";
+            var futwords="";
             function doRead()
             {
                 console.log("Make the cards appear and all");
@@ -88,11 +94,16 @@
                               complete: () =>  {bringEmUp()}
                              });
                             
-                        document.getElementById("readtitle").innerHTML = "Your past has been defined by the card "+ data[cool[0]].name;
-                        document.getElementById("knowledge").innerHTML = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        pasttitle= "Your past has been defined by the card "+ data[cool[0]].name;
+                        document.getElementById("readtitle") = pasttitle;
+                        pastwords = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        document.getElementById("knowledge").innerHTML = pastwords;
+                        document.getElementById("gopresentbut").innerHTML = "See your present.";
                         tableup.start(words.set);
-                         //For present: "Your current mantra seems to be : affirmation. Keep your current habit of : light. However, don't continue: shadow"
-                        //For future: "Ask yourself: question. Fortune Telling. In the future you will be : light"
+                        prestitle = "Your present has been defined by the card " + data[cool[1]].name;
+                        preswords = "You are currently represented as " + data[cool[1]].Archetype +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        futtitle = "Your future is told by the card " + data[cool[2]].name;
+                        futwords = "In the future, you will see " + data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
                     
                         });
  
@@ -174,12 +185,55 @@
                 duration: 2000
                
             })
+            
+            const bringup2 = popmotion.tween({ 
+                 from: { 
+                    x: 0,
+                    scale: 1
+                 },
+                 to: { 
+                    scale: 2,
+                    x: 0
+                 },
+                duration: 2000
+               
+            })
+
+            const bringup2 = popmotion.tween({ 
+                 from: { 
+                    x: 0,
+                    scale: 1
+                 },
+                 to: { 
+                    scale: 2,
+                    x: -50
+                 },
+                duration: 2000
+               
+            })
+            const bringdown1 = popmotion.tween({ 
+                 from: { 
+                    x: 50,
+                    scale: 2
+                 },
+                 to: { 
+                    scale: 1,
+                    x: 0
+                 },
+                duration: 2000
+               
+            })
 
             function bringEmUp ()
             {
                 bringup1.start(card1.set);
             }
            
+            function goPresent(){
+                bringdown1.start(card1.set);
+                bringup2.start(card2.set);
+
+            }
            
             
             setzero.start(card1)
