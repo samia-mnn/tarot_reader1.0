@@ -34,7 +34,7 @@
         <div class = "commentary">
             <h1 id = "readtitle"></h1>
             <p id = "knowledge"></p>
-            <button type="button">Continue?</button>
+            <button type="button" onclick="proceed()">Continue?</button>
         </div>
 
         <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
@@ -110,6 +110,11 @@
 
                         });
  
+            }
+
+            function proceed()
+            {
+                bringdown1.start(card1.set);
             }
 
             const container = popmotion.styler(document.querySelector('.container'));
@@ -188,6 +193,20 @@
                 duration: 2000
                
             })
+
+            const bringdown1 = popmotion.tween({ 
+                 from: { 
+                    x: 50,
+                    scale: 2
+                 },
+                 to: { 
+                    scale: 1,
+                    x: 0
+                 },
+                duration: 2000
+               
+            })
+
 
             function bringEmUp ()
             {
