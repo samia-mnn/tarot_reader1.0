@@ -89,7 +89,7 @@
                              });
                             
                         document.getElementById("readtitle").innerHTML = "Your past has been defined by the card "+ data[cool[0]].name;
-                        document.getElementById("knowledge").innerHTML = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*7)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*7)]).toLowerCase() +".";
+                        document.getElementById("knowledge").innerHTML = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
                         tableup.start(words.set);
                          //For present: "Your current mantra seems to be : affirmation. Keep your current habit of : light. However, don't continue: shadow"
                         //For future: "Ask yourself: question. Fortune Telling. In the future you will be : light"
