@@ -67,7 +67,12 @@
                 return readers;
 
             }
-
+            var prestitle = "";
+            var preswords = "";
+            var pasttitle = "";
+            var pastwords = "";
+            var futtitle = "";
+            var futwords = "";
             function doRead()
             {
                 console.log("Make the cards appear and all");
@@ -93,7 +98,17 @@
                         tableup.start(words.set);
                          //For present: "Your current mantra seems to be : affirmation. Keep your current habit of : light. However, don't continue: shadow"
                         //For future: "Ask yourself: question. Fortune Telling. In the future you will be : light"
-                    
+                        pasttitle= "Your past has been defined by the card "+ data[cool[0]].name;
+                        document.getElementById("readtitle") = pasttitle;
+                        pastwords = "You may have been "+ (data[cool[0]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() +". In some moments, you have been " + (data[cool[0]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        document.getElementById("knowledge").innerHTML = pastwords;
+                        tableup.start(words.set);
+                        prestitle = "Your present has been defined by the card " + data[cool[1]].name;
+                        preswords = "You are currently represented as " + data[cool[1]].Archetype +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
+                        futtitle = "Your future is told by the card " + data[cool[2]].name;
+                        futwords = "In the future, you will see " + data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
+
+
                         });
  
             }
