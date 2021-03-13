@@ -109,10 +109,10 @@
                         prestitle = "Your present has been defined by the card " + data[cool[1]].name;
                         preswords = "You believe in " + data[cool[1]].keywords[0] +". Keep your current habit of " + (data[cool[1]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + "; however, do not continue " + (data[cool[1]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() +".";
                         futtitle = "Your future is told by the card " + data[cool[2]].name;
-                        futwords =  data[cool[2]].fortune_telling[Math.floor(Math.random()*2)] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
+                        futwords =  data[cool[2]].fortune_telling[0] + ". You will be surrounded by " + data[cool[2]].keywords[Math.floor(Math.random()*2)] + ". Soon, you will be " + (data[cool[2]].meanings.light[Math.floor(Math.random()*4)]).toLowerCase() + ".";
                              //your past ... has lead you to ...light in the present. Use the ...key word  
                              //Summary ... key word in your past has lead you to key word in your present. Use this to face shadow future. Remember, 
-                        summary = "It seems as though " + data[cool[0]].keywords[0] + " has lead you to " + data[cool[1]].keywords[1] +" in the present. Use this to face " +  (data[cool[2]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() + " in your future. Remember, " +  data[cool[2]].fortune_telling[Math.floor(Math.random()*2)].toLowerCase() + ".";
+                        summary = "It seems as though " + data[cool[0]].keywords[0] + " has lead you to " + data[cool[1]].keywords[1] +" in the present. Use this to face " +  (data[cool[2]].meanings.shadow[Math.floor(Math.random()*4)]).toLowerCase() + " in your future. Remember, " +  data[cool[2]].fortune_telling[0].toLowerCase() + ".";
                         });
  
             }
